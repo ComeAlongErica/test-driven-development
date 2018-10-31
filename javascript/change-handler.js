@@ -43,9 +43,9 @@ class ChangeHandler {
         // TODO return the correct change in the following format...
         let change = this.cashTendered - this.amountDue;
         let quarters = Math.floor(change / 25);
-        var dimes = Math.floor((change % 25) / 10);
-        var nickels = Math.floor(((change % 25) % 10) / 5);
-        var pennies = Math.floor(((change % 25) %10) % 5);
+        let dimes = Math.floor((change % 25) / 10);
+        let nickels = Math.floor(((change % 25) % 10) / 5);
+        let pennies = Math.floor(((change % 25) %10) % 5);
             
         return {
             quarters: quarters,
@@ -54,4 +54,5 @@ class ChangeHandler {
             pennies: pennies
         }
     }
+
 }

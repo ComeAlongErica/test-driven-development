@@ -1,5 +1,5 @@
 // These test cases are all unfinished. We will finish them together.
-describe("generateCashRegister", function() {
+describe("generateCashRegister", function () {
 
     //test constructor
 
@@ -42,6 +42,7 @@ describe("generateCashRegister", function() {
         expect(tender.isPaymentSufficient()).toBe(true);
     });
 
+    //32 cent
     it("give change", () => {
         //Arrange
         let tender = new ChangeHandler({
@@ -53,15 +54,85 @@ describe("generateCashRegister", function() {
         tender.insertCoin("penny");
         tender.insertCoin("penny");
 
+        //Assert
+        expect(tender.giveChange()).toEqual(
+            {
+                quarters: 1,
+                dimes: 0,
+                nickels: 1,
+                pennies: 2
+            });
+    });
+
+    // 10 cent
+    it("give change", () => {
+        //Arrange
+        let tender = new ChangeHandler({
+            amountDue: 20,
+        });
+        //Act
+        tender.insertCoin("quarter");
+        tender.insertCoin("nickel");
+
 
         //Assert
         expect(tender.giveChange()).toEqual(
             {
-            quarters: 1,
-            dimes: 0,
-            nickels: 1,
-            pennies: 2
-        });
+                quarters: 0,
+                dimes: 1,
+                nickels: 0,
+                pennies: 0
+            });
     });
+
+    // 27 cent
+    it("give change", () => {
+        //Arrange
+        let tender = new ChangeHandler({
+            amountDue: 20,
+        });
+        //Act
+        tender.insertCoin("quarter");
+        tender.insertCoin("dime");
+        tender.insertCoin("dime");
+        tender.insertCoin("penny");
+        tender.insertCoin("penny");
+
+        //Assert
+        expect(tender.giveChange()).toEqual(
+            {
+                quarters: 1,
+                dimes: 0,
+                nickels: 0,
+                pennies: 2
+            });
+    });
+
+    // 68 cent
+    it("give change", () => {
+        //Arrange
+        let tender = new ChangeHandler({
+            amountDue: 20,
+        });
+        //Act
+        tender.insertCoin("quarter");
+        tender.insertCoin("quarter");
+        tender.insertCoin("quarter");
+        tender.insertCoin("dime");
+        tender.insertCoin("penny");
+        tender.insertCoin("penny");
+        tender.insertCoin("penny");
+
+        //Assert
+        expect(tender.giveChange()).toEqual(
+            {
+                quarters: 2,
+                dimes: 1,
+                nickels: 1,
+                pennies: 3
+            });
+    });
+
+
 
 });
