@@ -1,5 +1,5 @@
 // Karma configuration
-// Generated on Wed Jul 22 2015 11:19:42 GMT-0400 (EDT)
+// Generated on Wed Oct 31 2018 15:03:53 GMT-0400 (Eastern Daylight Time)
 
 module.exports = function(config) {
   config.set({
@@ -15,14 +15,19 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'javascript/**/*.js',
-      'spec/**/*.spec.js'
+      "javascript/**/*.js",
+      "spec/**.spec.js"
+    ],
+
+    plugins: [
+      require("karma-chrome-launcher"),
+      require("karma-jasmine"),
+      require("karma-spec-reporter")
     ],
 
 
     // list of files to exclude
     exclude: [
-      'no'
     ],
 
 
@@ -33,9 +38,9 @@ module.exports = function(config) {
 
 
     // test results reporter to use
-    // possible values: 'dots', 'progress', or 'mocha'
+    // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['mocha'],
+    reporters: ['progress'],
 
 
     // web server port
@@ -62,6 +67,10 @@ module.exports = function(config) {
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false
+    singleRun: false,
+
+    // Concurrency level
+    // how many browser should be started simultaneous
+    concurrency: Infinity
   })
 }
